@@ -13,43 +13,43 @@ struct LoginView: View {
     @State var password = ""
     
     var body: some View {
-        VStack {
-            // Header
-            HeaderView()
-            
-            // Login form
-            Form {
-                TextField("Email Address", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                SecureField("Password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Button {
-                    //Attempt log in
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.blue)
-                        
-                        Text("Log In")
-                            .foregroundColor(Color.white)
-                            .bold()
-                        
-                    }
-                }
-                
-            }
-            
-            // Create account
+        NavigationView {
             VStack {
-                Text("New around here?")
-                Button("Create an account") {
-                    // Show registration
+                // Header
+                HeaderView()
+                
+                // Login form
+                Form {
+                    TextField("Email Address", text: $email)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Button {
+                        //Attempt log in
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(Color.blue)
+                            
+                            Text("Log In")
+                                .foregroundColor(Color.white)
+                                .bold()
+                            
+                        }
+                    }
                     
                 }
+                
+                // Create account
+                VStack {
+                    Text("New around here?")
+                    NavigationLink("Create an account",
+                                   destination: RegisterView()) //Once it tapped, user goes to RegisterView
+                }
+                .padding(.bottom, 50)
+                Spacer()
             }
-            .padding(.bottom, 50)
-            Spacer()
         }
     }
 }
