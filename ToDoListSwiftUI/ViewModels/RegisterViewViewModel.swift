@@ -4,6 +4,8 @@
 //
 //  Created by iPak Tulane on 25/08/23.
 //
+
+import FirebaseFirestore
 import FirebaseAuth
 import Foundation
 
@@ -28,6 +30,15 @@ class RegisterViewViewModel: ObservableObject {
     }
     
     private func insertUSerRecord(id: String) {
+        let newUser = User(id: id,
+                           name: name,
+                           email: email,
+                           joined: Date().timeIntervalSince1970)
+        
+        let db = Firestore.firestore()
+        db.collection("users")
+            .document(id)
+            .setData(newUser.asDictionary())
         
     }
     
